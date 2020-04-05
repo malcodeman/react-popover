@@ -1,0 +1,34 @@
+{
+  "name": "@malcodeman/react-popover",
+  "version": "1.0.0",
+  "description": "The Popover component displays floating content in relation to a target",
+  "main": "dist/index.js",
+  "scripts": {
+    "demo": "parcel watch demo/index.html",
+    "build": "parcel build src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malcodeman/react-popover.git"
+  },
+  "author": "malcodeman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/malcodeman/react-popover/issues"
+  },
+  "homepage": "https://github.com/malcodeman/react-popover#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
+    "parcel": "^2.0.0-alpha.3.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "use-popper": "^1.1.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  }
+}
