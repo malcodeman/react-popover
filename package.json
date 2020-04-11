@@ -31,7 +31,8 @@
     "eslint-plugin-react": "^7.19.0",
     "parcel": "^2.0.0-alpha.3.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.2.2",
