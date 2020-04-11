@@ -1,5 +1,5 @@
 import React from "react";
-import usePopper from "use-popper";
+import { usePopper } from "react-popper";
 
 import hooks from "./hooks";
 import utils from "./utils";
@@ -15,7 +15,11 @@ function StatefulPopover(props) {
     ...otherProps
   } = props;
 
-  const { reference, popper } = usePopper({ placement });
+  const [referenceElement, setReferenceElement] = React.useState(null);
+  const [popperElement, setPopperElement] = React.useState(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement,
+  });
   const [isOpen, setIsOpen] = React.useState(false);
   const ref = React.useRef();
 
@@ -37,14 +41,15 @@ function StatefulPopover(props) {
   return (
     <>
       {React.cloneElement(children, {
-        ref: reference.ref,
+        ref: setReferenceElement,
         onClick: internalOnClick,
       })}
       {isOpen &&
         React.cloneElement(content({ close }), {
           ...otherProps,
-          ref: utils.mergeRefs(ref, popper.ref),
-          style: popper.styles,
+          ...attributes.popper,
+          ref: utils.mergeRefs(ref, setPopperElement),
+          style: styles.popper,
         })}
     </>
   );
