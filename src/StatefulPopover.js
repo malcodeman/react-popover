@@ -4,6 +4,7 @@ import { usePopper } from "react-popper";
 import hooks from "./hooks";
 import utils from "./utils";
 import types from "./types";
+import constants from "./constants";
 
 function StatefulPopover(props) {
   const {
@@ -12,6 +13,7 @@ function StatefulPopover(props) {
     shouldCloseOnExternalClick,
     children,
     onClose,
+    triggerType,
     ...otherProps
   } = props;
 
@@ -31,10 +33,6 @@ function StatefulPopover(props) {
     }
   }
 
-  function internalOnClick() {
-    setIsOpen(!isOpen);
-  }
-
   hooks.useKeyPress("Escape", close);
   hooks.useOnClickOutside(ref, shouldCloseOnExternalClick && close);
 
@@ -42,7 +40,18 @@ function StatefulPopover(props) {
     <>
       {React.cloneElement(children, {
         ref: setReferenceElement,
-        onClick: internalOnClick,
+        onClick:
+          triggerType === constants.TRIGGER_TYPE.click
+            ? () => setIsOpen(!isOpen)
+            : undefined,
+        onMouseEnter:
+          triggerType === constants.TRIGGER_TYPE.hover
+            ? () => setIsOpen(true)
+            : undefined,
+        onMouseLeave:
+          triggerType === constants.TRIGGER_TYPE.hover
+            ? () => setIsOpen(false)
+            : undefined,
       })}
       {isOpen &&
         React.cloneElement(content({ close }), {

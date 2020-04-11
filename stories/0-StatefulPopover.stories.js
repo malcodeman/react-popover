@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { StatefulPopover } from "../src";
-import { PLACEMENT } from "../src/constants";
+import { PLACEMENT, TRIGGER_TYPE } from "../src/constants";
 import imageFile from "./static/image.jpg";
 
 const image = {
@@ -77,5 +77,14 @@ export const Styling = () => (
     )}
   >
     <UserIcon src={image.src}></UserIcon>
+  </StatefulPopover>
+);
+
+export const Hover = () => (
+  <StatefulPopover
+    content={() => <div>PopoverContent</div>}
+    triggerType={TRIGGER_TYPE.hover}
+  >
+    <button>Trigger Popover</button>
   </StatefulPopover>
 );

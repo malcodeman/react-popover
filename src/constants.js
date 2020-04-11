@@ -13,8 +13,14 @@ const PLACEMENT = {
   LEFT_START: "left-start",
 };
 
-export { PLACEMENT };
+const TRIGGER_TYPE = {
+  click: "click",
+  hover: "hover",
+};
+
+export { PLACEMENT, TRIGGER_TYPE };
 
 export default {
   PLACEMENT,
+  TRIGGER_TYPE,
 };

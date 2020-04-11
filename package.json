@@ -1,6 +1,6 @@
 {
   "name": "@malcodeman/react-popover",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The Popover component displays floating content in relation to a target",
   "main": "dist/index.js",
   "scripts": {
