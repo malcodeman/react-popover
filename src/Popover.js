@@ -44,7 +44,7 @@ function Popover(props) {
   function internalOnClickOutside(event) {
     const target = event.target;
 
-    if (referenceElement === target) {
+    if (referenceElement === target || referenceElement.contains(target)) {
       return;
     }
 
