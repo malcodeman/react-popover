@@ -29,6 +29,25 @@ function App() {
 export default App;
 ```
 
+## Stateless example
+
+```jsx
+import React from "react";
+import { Popover } from "@malcodeman/react-popover";
+
+function App() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <Popover isOpen={isOpen} content={() => <div>PopoverContent</div>}>
+      <button onClick={() => setIsOpen(!isOpen)}>Trigger Popover</button>
+    </Popover>
+  );
+}
+
+export default App;
+```
+
 ## License
 
 [MIT](./LICENSE)
