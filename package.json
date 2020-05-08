@@ -3,6 +3,13 @@
   "version": "1.1.5",
   "description": "The Popover component displays floating content in relation to a target",
   "main": "dist/index.js",
+  "keywords": [
+    "react",
+    "popover",
+    "popper",
+    "react-popover",
+    "react-popper"
+  ],
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build": "parcel build src/index.js",
