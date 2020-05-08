@@ -88,3 +88,15 @@ export const Hover = () => (
     <button>Trigger Popover</button>
   </StatefulPopover>
 );
+
+export const CloseFromContent = () => (
+  <StatefulPopover
+    content={({ close }) => (
+      <div>
+        <button onClick={close}>Close</button>
+      </div>
+    )}
+  >
+    <button>Trigger Popover</button>
+  </StatefulPopover>
+);

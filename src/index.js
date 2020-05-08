@@ -1,4 +1,6 @@
 import StatefulPopover from "./StatefulPopover";
+import Popover from "./Popover";
+
 import { PLACEMENT } from "./constants";
 
-export { StatefulPopover, PLACEMENT };
+export { StatefulPopover, Popover, PLACEMENT };
