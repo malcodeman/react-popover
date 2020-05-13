@@ -25,6 +25,7 @@ function Popover(props) {
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement,
   });
+  const childArray = React.Children.toArray(children);
 
   function internalOnClick() {
     onClick && onClick();
@@ -53,6 +54,13 @@ function Popover(props) {
 
   hooks.useKeyPress("Escape", onEsc);
   hooks.useOnClickOutside(ref, internalOnClickOutside);
+
+  if (childArray.length !== 1) {
+    console.error(
+      `[react-popover] Exactly 1 child must be passed to Popover, found ${childArray.length} children`
+    );
+    return null;
+  }
 
   return (
     <>
