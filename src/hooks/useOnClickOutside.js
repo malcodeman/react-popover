@@ -7,7 +7,9 @@ function useOnClickOutside(ref, handler = () => {}) {
         return;
       }
 
-      handler(event);
+      if (typeof handler === "function") {
+        handler(event);
+      }
     }
 
     document.addEventListener("mousedown", listener);

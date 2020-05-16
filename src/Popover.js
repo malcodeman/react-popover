@@ -42,6 +42,10 @@ function Popover(props) {
     children.props.onMouseLeave && children.props.onMouseLeave();
   }
 
+  function internalOnEsc() {
+    onEsc && onEsc();
+  }
+
   function internalOnClickOutside(event) {
     const target = event.target;
 
@@ -52,7 +56,7 @@ function Popover(props) {
     onClickOutside && onClickOutside();
   }
 
-  hooks.useKeyPress("Escape", onEsc);
+  hooks.useKeyPress("Escape", internalOnEsc);
   hooks.useOnClickOutside(ref, internalOnClickOutside);
 
   if (childArray.length !== 1) {

@@ -7,14 +7,18 @@ function useKeyPress(targetKey, onPressDown = () => {}, onPressUp = () => {}) {
     function downHandler({ key }) {
       if (key === targetKey) {
         setKeyPressed(true);
-        onPressDown();
+        if (typeof onPressDown === "function") {
+          onPressDown();
+        }
       }
     }
 
     function upHandler({ key }) {
       if (key === targetKey) {
         setKeyPressed(false);
-        onPressUp();
+        if (typeof onPressUp === "function") {
+          onPressUp();
+        }
       }
     }
 
