@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withKnobs, select } from "@storybook/addon-knobs";
 
 import { StatefulPopover } from "../src";
 import { PLACEMENT, TRIGGER_TYPE } from "../src/constants";
@@ -44,59 +45,105 @@ const MenuItem = styled.li`
   }
 `;
 
+const Main = styled.main`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 512px;
+  width: 512px;
+  border-radius: 10px;
+  border: 2px dashed #ff6b81;
+`;
+
 export default {
   title: "StatefulPopover",
   component: StatefulPopover,
+  decorators: [withKnobs],
 };
 
-export const Default = () => (
-  <StatefulPopover content={() => <div>PopoverContent</div>}>
-    <button>Trigger Popover</button>
-  </StatefulPopover>
-);
+export function Default() {
+  const placement = select(
+    "Placement",
+    Object.values(PLACEMENT),
+    PLACEMENT.BOTTOM_START
+  );
+  const triggerType = select(
+    "Trigger type",
+    Object.values(TRIGGER_TYPE),
+    TRIGGER_TYPE.click
+  );
 
-export const PlacementRight = () => (
-  <StatefulPopover
-    content={() => <div>PopoverContent</div>}
-    placement={PLACEMENT.RIGHT}
-  >
-    <button>Trigger Popover</button>
-  </StatefulPopover>
-);
+  return (
+    <Main>
+      <StatefulPopover
+        placement={placement}
+        triggerType={triggerType}
+        content={() => <div>PopoverContent</div>}
+      >
+        <button>Trigger Popover</button>
+      </StatefulPopover>
+    </Main>
+  );
+}
 
-export const Styling = () => (
-  <StatefulPopover
-    content={() => (
-      <StyledPopover>
-        <Menu>
-          <MenuItem>Notifications</MenuItem>
-          <MenuItem>Messages</MenuItem>
-          <MenuItem>Bookmarks</MenuItem>
-        </Menu>
-      </StyledPopover>
-    )}
-  >
-    <UserIcon src={image.src}></UserIcon>
-  </StatefulPopover>
-);
+export function Styling() {
+  const placement = select(
+    "Placement",
+    Object.values(PLACEMENT),
+    PLACEMENT.BOTTOM_START
+  );
+  const triggerType = select(
+    "Trigger type",
+    Object.values(TRIGGER_TYPE),
+    TRIGGER_TYPE.click
+  );
 
-export const Hover = () => (
-  <StatefulPopover
-    content={() => <div>PopoverContent</div>}
-    triggerType={TRIGGER_TYPE.hover}
-  >
-    <button>Trigger Popover</button>
-  </StatefulPopover>
-);
+  return (
+    <Main>
+      <StatefulPopover
+        placement={placement}
+        triggerType={triggerType}
+        content={() => (
+          <StyledPopover>
+            <Menu>
+              <MenuItem>Notifications</MenuItem>
+              <MenuItem>Messages</MenuItem>
+              <MenuItem>Bookmarks</MenuItem>
+            </Menu>
+          </StyledPopover>
+        )}
+      >
+        <UserIcon src={image.src}></UserIcon>
+      </StatefulPopover>
+    </Main>
+  );
+}
 
-export const CloseFromContent = () => (
-  <StatefulPopover
-    content={({ close }) => (
-      <div>
-        <button onClick={close}>Close</button>
-      </div>
-    )}
-  >
-    <button>Trigger Popover</button>
-  </StatefulPopover>
-);
+export function CloseFromContent() {
+  const placement = select(
+    "Placement",
+    Object.values(PLACEMENT),
+    PLACEMENT.BOTTOM_START
+  );
+  const triggerType = select(
+    "Trigger type",
+    Object.values(TRIGGER_TYPE),
+    TRIGGER_TYPE.click
+  );
+
+  return (
+    <Main>
+      <StatefulPopover
+        placement={placement}
+        triggerType={triggerType}
+        content={({ close }) => (
+          <div>
+            <button onClick={close}>Close</button>
+          </div>
+        )}
+      >
+        <button>Trigger Popover</button>
+      </StatefulPopover>
+    </Main>
+  );
+}

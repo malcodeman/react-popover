@@ -1,14 +1,23 @@
 import React from "react";
+import { withKnobs, select } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 
 import { Popover } from "../src";
+import { PLACEMENT } from "../src/constants";
 
 export default {
   title: "Popover",
   component: Popover,
+  decorators: [withKnobs],
 };
 
-export const Default = () => {
+export function Default() {
   const [isOpen, setisOpen] = React.useState(false);
+  const placement = select(
+    "Placement",
+    Object.values(PLACEMENT),
+    PLACEMENT.BOTTOM_START
+  );
 
   function onClick() {
     setisOpen(!isOpen);
@@ -18,34 +27,49 @@ export const Default = () => {
     <>
       <button onClick={() => setisOpen(true)}>Open</button>
       <button onClick={() => setisOpen(false)}>Close</button>
-      <Popover isOpen={isOpen} content={() => <div>PopoverContent</div>}>
+      <Popover
+        placement={placement}
+        isOpen={isOpen}
+        content={() => <div>PopoverContent</div>}
+      >
         <button onClick={onClick}>Trigger Popover</button>
       </Popover>
     </>
   );
-};
+}
 
-export const MultipleOnClicks = () => {
+export function MultipleOnClicks() {
   const [isOpen, setisOpen] = React.useState(false);
+  const placement = select(
+    "Placement",
+    Object.values(PLACEMENT),
+    PLACEMENT.BOTTOM_START
+  );
 
   function onClick() {
-    console.log("Secondary onClick event");
+    action("Secondary onClick event")();
     setisOpen(!isOpen);
   }
 
   return (
     <Popover
-      onClick={() => console.log("Primary onClick event")}
+      placement={placement}
+      onClick={action("Primary onClick event")}
       isOpen={isOpen}
       content={() => <div>PopoverContent</div>}
     >
       <button onClick={onClick}>Trigger Popover</button>
     </Popover>
   );
-};
+}
 
-export const CloseFromContent = () => {
+export function CloseFromContent() {
   const [isOpen, setisOpen] = React.useState(false);
+  const placement = select(
+    "Placement",
+    Object.values(PLACEMENT),
+    PLACEMENT.BOTTOM_START
+  );
 
   function close() {
     setisOpen(false);
@@ -53,6 +77,7 @@ export const CloseFromContent = () => {
 
   return (
     <Popover
+      placement={placement}
       isOpen={isOpen}
       onClickOutside={close}
       onEsc={close}
@@ -65,4 +90,4 @@ export const CloseFromContent = () => {
       <button onClick={() => setisOpen(true)}>Trigger Popover</button>
     </Popover>
   );
-};
+}
