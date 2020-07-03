@@ -2,6 +2,7 @@ import constants from "../constants";
 
 const baseDefaults = {
   placement: constants.PLACEMENT.BOTTOM_START,
+  modifiers: [],
 };
 
 const popoverDefaults = {

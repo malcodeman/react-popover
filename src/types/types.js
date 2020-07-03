@@ -4,6 +4,7 @@ import constants from "../constants";
 
 const baseTypes = {
   placement: PropTypes.oneOf(Object.values(constants.PLACEMENT)),
+  modifiers: PropTypes.array,
   content: PropTypes.func,
   onClick: PropTypes.func,
   onMouseEnter: PropTypes.func,

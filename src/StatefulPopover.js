@@ -8,6 +8,7 @@ import Popper from "./Popover";
 function StatefulPopover(props) {
   const {
     placement,
+    modifiers,
     content,
     children,
     triggerType,
@@ -61,6 +62,7 @@ function StatefulPopover(props) {
   return (
     <Popper
       placement={placement}
+      modifiers={modifiers}
       isOpen={isOpen}
       content={renderContent}
       onClick={onClick}

@@ -1,9 +1,15 @@
 import React from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
+import styled from "styled-components";
 
 import { Popover } from "../src";
 import { PLACEMENT } from "../src/constants";
+
+const Content = styled.div`
+  background-color: #c83b50;
+  color: #fff;
+`;
 
 export default {
   title: "Popover",
@@ -86,6 +92,49 @@ export function CloseFromContent() {
           <button onClick={close}>Close</button>
         </div>
       )}
+    >
+      <button onClick={() => setisOpen(true)}>Trigger Popover</button>
+    </Popover>
+  );
+}
+
+export function SameWidth() {
+  const [isOpen, setisOpen] = React.useState(false);
+  const placement = select(
+    "Placement",
+    Object.values(PLACEMENT),
+    PLACEMENT.BOTTOM_START
+  );
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: "sameWidth",
+        enabled: true,
+        fn: ({ state }) => {
+          state.styles.popper.width = `${state.rects.reference.width}px`;
+        },
+        phase: "beforeWrite",
+        requires: ["computeStyles"],
+        effect({ state }) {
+          state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`;
+        },
+      },
+    ],
+    []
+  );
+
+  function close() {
+    setisOpen(false);
+  }
+
+  return (
+    <Popover
+      placement={placement}
+      modifiers={modifiers}
+      isOpen={isOpen}
+      onClickOutside={close}
+      onEsc={close}
+      content={() => <Content>Content</Content>}
     >
       <button onClick={() => setisOpen(true)}>Trigger Popover</button>
     </Popover>

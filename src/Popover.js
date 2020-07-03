@@ -8,6 +8,7 @@ import types from "./types";
 function Popover(props) {
   const {
     placement,
+    modifiers,
     content,
     children,
     isOpen,
@@ -24,6 +25,7 @@ function Popover(props) {
   const ref = React.useRef(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement,
+    modifiers,
   });
   const childArray = React.Children.toArray(children);
 
