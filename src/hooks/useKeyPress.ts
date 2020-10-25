@@ -1,6 +1,10 @@
 import React from "react";
 
-function useKeyPress(targetKey, onPressDown = () => {}, onPressUp = () => {}) {
+function useKeyPress(
+  targetKey: string,
+  onPressDown = () => {},
+  onPressUp = () => {}
+) {
   const [keyPressed, setKeyPressed] = React.useState(false);
 
   React.useEffect(() => {

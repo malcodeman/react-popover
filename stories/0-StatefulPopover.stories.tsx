@@ -4,12 +4,6 @@ import { withKnobs, select } from "@storybook/addon-knobs";
 
 import { StatefulPopover } from "../src";
 import { PLACEMENT, TRIGGER_TYPE } from "../src/constants";
-import imageFile from "./static/image.jpg";
-
-const image = {
-  src: imageFile,
-  alt: "image",
-};
 
 const UserIcon = styled.img`
   cursor: pointer;
@@ -113,7 +107,7 @@ export function Styling() {
           </StyledPopover>
         )}
       >
-        <UserIcon src={image.src}></UserIcon>
+        <UserIcon src="https://source.unsplash.com/random"></UserIcon>
       </StatefulPopover>
     </Main>
   );

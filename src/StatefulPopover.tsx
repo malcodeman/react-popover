@@ -1,19 +1,33 @@
 import React from "react";
 
-import types from "./types";
 import constants from "./constants";
 
 import Popper from "./Popover";
 
-function StatefulPopover(props) {
+type props = {
+  placement?: any;
+  modifiers?: any;
+  content: any;
+  children: any;
+  triggerType?: string;
+  dismissOnClickOutside?: boolean;
+  dismissOnEsc?: string;
+  onOpen?: () => void;
+  onClose?: () => void;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+};
+
+function StatefulPopover(props: props) {
   const {
     placement,
     modifiers,
     content,
     children,
-    triggerType,
-    dismissOnClickOutside,
-    dismissOnEsc,
+    triggerType = constants.TRIGGER_TYPE.click,
+    dismissOnClickOutside = true,
+    dismissOnEsc = true,
   } = props;
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -27,8 +41,8 @@ function StatefulPopover(props) {
     setIsOpen(false);
   }
 
-  function onClick(e) {
-    props.onClick && props.onClick(e);
+  function onClick() {
+    props.onClick && props.onClick();
 
     if (isOpen) {
       triggerType === constants.TRIGGER_TYPE.click && close();
@@ -37,13 +51,13 @@ function StatefulPopover(props) {
     }
   }
 
-  function onMouseEnter(e) {
-    props.onMouseEnter && props.onMouseEnter(e);
+  function onMouseEnter() {
+    props.onMouseEnter && props.onMouseEnter();
     triggerType === constants.TRIGGER_TYPE.hover && open();
   }
 
-  function onMouseLeave(e) {
-    props.onMouseLeave && props.onMouseLeave(e);
+  function onMouseLeave() {
+    props.onMouseLeave && props.onMouseLeave();
     triggerType === constants.TRIGGER_TYPE.hover && close();
   }
 
@@ -75,9 +89,5 @@ function StatefulPopover(props) {
     </Popper>
   );
 }
-
-StatefulPopover.propTypes = types.statefulPopoverTypes;
-
-StatefulPopover.defaultProps = types.statefulPopoverDefaults;
 
 export default StatefulPopover;

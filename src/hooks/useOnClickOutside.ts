@@ -1,8 +1,11 @@
 import React from "react";
 
-function useOnClickOutside(ref, handler = () => {}) {
+function useOnClickOutside(
+  ref: React.RefObject<HTMLElement | null>,
+  handler: (event: Event) => void
+) {
   React.useEffect(() => {
-    function listener(event) {
+    function listener(event: any) {
       if (!ref.current || ref.current.contains(event.target)) {
         return;
       }

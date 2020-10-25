@@ -3,9 +3,21 @@ import { usePopper } from "react-popper";
 
 import hooks from "./hooks";
 import utils from "./utils";
-import types from "./types";
 
-function Popover(props) {
+type props = {
+  placement?: any;
+  modifiers?: any;
+  content: React.ReactNode;
+  children: any;
+  isOpen: boolean;
+  onEsc?: () => void;
+  onClickOutside?: () => void;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+};
+
+function Popover(props: props) {
   const {
     placement,
     modifiers,
@@ -59,7 +71,7 @@ function Popover(props) {
   }
 
   hooks.useKeyPress("Escape", internalOnEsc);
-  hooks.useOnClickOutside(ref, internalOnClickOutside);
+  hooks.useOnClickOutside(ref, (event) => internalOnClickOutside(event));
 
   if (childArray.length !== 1) {
     console.error(
@@ -90,9 +102,5 @@ function Popover(props) {
     </>
   );
 }
-
-Popover.propTypes = types.popoverTypes;
-
-Popover.defaultProps = types.popoverDefaults;
 
 export default Popover;
