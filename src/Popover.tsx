@@ -3,9 +3,10 @@ import { usePopper } from "react-popper";
 
 import hooks from "./hooks";
 import utils from "./utils";
+import { placement } from "./constants";
 
 type props = {
-  placement?: any;
+  placement?: placement;
   modifiers?: any;
   content: React.ReactNode;
   children: any;

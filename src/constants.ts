@@ -11,12 +11,28 @@ const PLACEMENT = {
   LEFT_END: "left-end",
   LEFT: "left",
   LEFT_START: "left-start",
-};
+} as const;
 
 const TRIGGER_TYPE = {
   click: "click",
   hover: "hover",
-};
+} as const;
+
+export declare type placement =
+  | "top-start"
+  | "top"
+  | "top-end"
+  | "right-start"
+  | "right"
+  | "right-end"
+  | "bottom-end"
+  | "bottom"
+  | "bottom-start"
+  | "left-end"
+  | "left"
+  | "left-start";
+
+export declare type triggerType = "click" | "hover";
 
 export { PLACEMENT, TRIGGER_TYPE };
 
